@@ -32,16 +32,23 @@ class _HotSalesState extends State<HotSales> {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return CircularProgressIndicator();
                 }
+                if(snapshot.hasError){
+                  throw snapshot.stackTrace!;
+                }
                 if (!snapshot.hasData) return Text('Нет данных');
-                return Text('oleg');
-                return ListView.builder(
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(snapshot.data![index].title),
-                        subtitle: Text(snapshot.data![index].subtitle),
-                      );
-                    });
+                print(snapshot.data!);
+                return Container(
+                  height: 100,
+                  width: 200,
+                  child: ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(snapshot.data![index].title),
+                          subtitle: Text(snapshot.data![index].subtitle),
+                        );
+                      }),
+                );
               })
         ],
       ),

@@ -12,7 +12,7 @@ class HotSaleModel with _$HotSaleModel {
     @Default(true) bool isBuy,
     required String title,
     required String subtitle,
-    required String imageUrl,
+    required String picture,
   }) = _HotSaleModel;
 
   factory HotSaleModel.fromJson(Map<String, dynamic> json) =>

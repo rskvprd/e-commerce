@@ -13,7 +13,7 @@ _$_HotSaleModel _$$_HotSaleModelFromJson(Map<String, dynamic> json) =>
       isBuy: json['isBuy'] as bool? ?? true,
       title: json['title'] as String,
       subtitle: json['subtitle'] as String,
-      imageUrl: json['imageUrl'] as String,
+      picture: json['picture'] as String,
     );
 
 Map<String, dynamic> _$$_HotSaleModelToJson(_$_HotSaleModel instance) =>
@@ -23,5 +23,5 @@ Map<String, dynamic> _$$_HotSaleModelToJson(_$_HotSaleModel instance) =>
       'isBuy': instance.isBuy,
       'title': instance.title,
       'subtitle': instance.subtitle,
-      'imageUrl': instance.imageUrl,
+      'picture': instance.picture,
     };

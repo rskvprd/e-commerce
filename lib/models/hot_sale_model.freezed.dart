@@ -25,7 +25,7 @@ mixin _$HotSaleModel {
   bool get isBuy => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get subtitle => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
+  String get picture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +44,7 @@ abstract class $HotSaleModelCopyWith<$Res> {
       bool isBuy,
       String title,
       String subtitle,
-      String imageUrl});
+      String picture});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$HotSaleModelCopyWithImpl<$Res> implements $HotSaleModelCopyWith<$Res> {
     Object? isBuy = freezed,
     Object? title = freezed,
     Object? subtitle = freezed,
-    Object? imageUrl = freezed,
+    Object? picture = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -85,9 +85,9 @@ class _$HotSaleModelCopyWithImpl<$Res> implements $HotSaleModelCopyWith<$Res> {
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: imageUrl == freezed
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -106,7 +106,7 @@ abstract class _$$_HotSaleModelCopyWith<$Res>
       bool isBuy,
       String title,
       String subtitle,
-      String imageUrl});
+      String picture});
 }
 
 /// @nodoc
@@ -127,7 +127,7 @@ class __$$_HotSaleModelCopyWithImpl<$Res>
     Object? isBuy = freezed,
     Object? title = freezed,
     Object? subtitle = freezed,
-    Object? imageUrl = freezed,
+    Object? picture = freezed,
   }) {
     return _then(_$_HotSaleModel(
       id: id == freezed
@@ -150,9 +150,9 @@ class __$$_HotSaleModelCopyWithImpl<$Res>
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: imageUrl == freezed
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -167,7 +167,7 @@ class _$_HotSaleModel implements _HotSaleModel {
       this.isBuy = true,
       required this.title,
       required this.subtitle,
-      required this.imageUrl});
+      required this.picture});
 
   factory _$_HotSaleModel.fromJson(Map<String, dynamic> json) =>
       _$$_HotSaleModelFromJson(json);
@@ -185,11 +185,11 @@ class _$_HotSaleModel implements _HotSaleModel {
   @override
   final String subtitle;
   @override
-  final String imageUrl;
+  final String picture;
 
   @override
   String toString() {
-    return 'HotSaleModel(id: $id, isNew: $isNew, isBuy: $isBuy, title: $title, subtitle: $subtitle, imageUrl: $imageUrl)';
+    return 'HotSaleModel(id: $id, isNew: $isNew, isBuy: $isBuy, title: $title, subtitle: $subtitle, picture: $picture)';
   }
 
   @override
@@ -202,7 +202,7 @@ class _$_HotSaleModel implements _HotSaleModel {
             const DeepCollectionEquality().equals(other.isBuy, isBuy) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.subtitle, subtitle) &&
-            const DeepCollectionEquality().equals(other.imageUrl, imageUrl));
+            const DeepCollectionEquality().equals(other.picture, picture));
   }
 
   @JsonKey(ignore: true)
@@ -214,7 +214,7 @@ class _$_HotSaleModel implements _HotSaleModel {
       const DeepCollectionEquality().hash(isBuy),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(subtitle),
-      const DeepCollectionEquality().hash(imageUrl));
+      const DeepCollectionEquality().hash(picture));
 
   @JsonKey(ignore: true)
   @override
@@ -236,7 +236,7 @@ abstract class _HotSaleModel implements HotSaleModel {
       final bool isBuy,
       required final String title,
       required final String subtitle,
-      required final String imageUrl}) = _$_HotSaleModel;
+      required final String picture}) = _$_HotSaleModel;
 
   factory _HotSaleModel.fromJson(Map<String, dynamic> json) =
       _$_HotSaleModel.fromJson;
@@ -252,7 +252,7 @@ abstract class _HotSaleModel implements HotSaleModel {
   @override
   String get subtitle;
   @override
-  String get imageUrl;
+  String get picture;
   @override
   @JsonKey(ignore: true)
   _$$_HotSaleModelCopyWith<_$_HotSaleModel> get copyWith =>
