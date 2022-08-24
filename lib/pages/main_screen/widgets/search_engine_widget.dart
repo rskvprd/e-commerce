@@ -3,15 +3,17 @@ import 'package:phone_market/utils.dart';
 
 class SearchEngineWidget extends StatelessWidget {
   const SearchEngineWidget({Key? key}) : super(key: key);
+  static const searchEngineTextStyle = TextStyle(fontFamily: 'MarkPro', fontSize: 15);
 
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisSize: MainAxisSize.min, children: [
-      Container(
+      SizedBox(
         width: 280,
-        height: 34,
+        height: 40,
         child: TextField(
           textAlign: TextAlign.start,
+          style: searchEngineTextStyle,
           textAlignVertical: const TextAlignVertical(y: 1),
           maxLines: 1,
           decoration: InputDecoration(
@@ -21,12 +23,12 @@ class SearchEngineWidget extends StatelessWidget {
             ),
             hintText: 'Search',
             hintMaxLines: 1,
-            hintStyle: const TextStyle(fontFamily: 'MarkPro', fontSize: 13),
+            hintStyle: searchEngineTextStyle,
             filled: true,
             fillColor: Colors.white,
             prefixIcon: const Icon(
               Icons.search_outlined,
-              size: 17,
+              size: 20,
               color: MyColors.light,
             ),
           ),
@@ -40,7 +42,7 @@ class SearchEngineWidget extends StatelessWidget {
             backgroundColor: MyColors.light,
             child: ImageIcon(
               AssetImage('assets/icons/qr_code.png'),
-              size: 13,
+              size: 15,
               color: Colors.white,
             ),
           ))

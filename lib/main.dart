@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'di.dart' as di;
 import 'package:phone_market/pages/main_screen/main_screen.dart';
 
 void main() {
+  di.setup();
   runApp(const MyApp());
 }
 

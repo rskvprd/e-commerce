@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phone_market/pages/main_screen/widgets/title_widget.dart';
 import 'package:phone_market/utils.dart';
 
 class CategoriesWidget extends StatefulWidget {
@@ -17,28 +18,19 @@ class CategoriesWidget extends StatefulWidget {
 
 class _CategoriesWidgetState extends State<CategoriesWidget> {
   int selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          const Text(
-            'Select category',
-            style: TextStyle(
-                fontFamily: 'MarkPro',
-                fontWeight: FontWeight.w700,
-                fontSize: 25),
-          ),
-          TextButton(
-              onPressed: () {},
-              child: const Text(
-                'view all',
-                style: TextStyle(
-                    color: MyColors.light, fontFamily: 'MarkPro', fontSize: 15),
-              ))
-        ]),
+        TitleWidget(
+          title: 'Select category',
+          subtitle: 'view all',
+          onTap: (){},
+        ),
+        const Padding(padding: EdgeInsets.only(bottom: 5)),
         SizedBox(
-          height: 150,
+          height: 100,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: CategoriesWidget._categories.length,
@@ -46,8 +38,8 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
               final Map<String, ImageProvider> category =
                   CategoriesWidget._categories[index];
               return GestureDetector(
-                onTap: (){
-                  setState((){
+                onTap: () {
+                  setState(() {
                     selectedIndex = index;
                   });
                 },
@@ -102,7 +94,7 @@ class _Category extends StatelessWidget {
             style: TextStyle(
                 color: isSelected ? MyColors.light : MyColors.dark,
                 fontFamily: 'MarkPro',
-                fontWeight: FontWeight.w500))
+                fontWeight: FontWeight.w600))
       ],
     );
   }
