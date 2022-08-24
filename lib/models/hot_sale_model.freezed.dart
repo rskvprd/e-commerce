@@ -159,7 +159,8 @@ class __$$_HotSaleModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_HotSaleModel implements _HotSaleModel {
   const _$_HotSaleModel(
       {required this.id,

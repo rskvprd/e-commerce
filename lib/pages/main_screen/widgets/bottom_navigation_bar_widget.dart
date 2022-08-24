@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:phone_market/utils.dart';
 
@@ -17,6 +16,8 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   Widget build(BuildContext context) {
     return Container(
       height: 80,
+      // TODO: throw overflow error when open favorites (without padding didn't throw)
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         color: MyColors.dark,

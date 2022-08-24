@@ -4,8 +4,11 @@ part 'hot_sale_model.freezed.dart';
 
 part 'hot_sale_model.g.dart';
 
+
 @Freezed()
 class HotSaleModel with _$HotSaleModel {
+
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory HotSaleModel({
     required int id,
     @Default(false) bool isNew,

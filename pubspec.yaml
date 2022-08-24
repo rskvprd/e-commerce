@@ -37,3 +37,7 @@ flutter:
     - family: MarkPro
       fonts:
         - asset: fonts/Mark-Pro.ttf
+    - family: SFPro
+      fonts:
+        - asset: fonts/SFPRODISPLAYREGULAR.OTF
+        - asset: fonts/SFPRODISPLAYBOLD.OTF
