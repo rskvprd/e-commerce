@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:phone_market/pages/main_screen/widgets/categories_widget.dart';
+import 'package:phone_market/pages/main_screen/widgets/best_sellers_widget.dart';
+import 'package:phone_market/pages/main_screen/widgets/select_category_widget.dart';
 import 'package:phone_market/utils.dart';
 
 import 'widgets/bottom_navigation_bar_widget.dart';
@@ -19,13 +20,15 @@ class Main extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: const [
-              CategoriesWidget(),
-              Padding(padding: EdgeInsets.only(bottom: 15)),
+              SelectCategoryWidget(),
+              Padding(padding: EdgeInsets.only(bottom: 11)),
               Center(
                 child: SearchEngineWidget(),
               ),
-              Padding(padding: EdgeInsets.only(bottom: 14)),
+              Padding(padding: EdgeInsets.only(bottom: 11)),
               HotSales(),
+              Padding(padding: EdgeInsets.only(bottom: 11)),
+              BestSellersWidget(),
             ],
           ),
         ),

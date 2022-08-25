@@ -1,11 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:phone_market/models/hot_sale_model.dart';
 import 'package:phone_market/pages/main_screen/widgets/title_widget.dart';
-import 'package:phone_market/repositories/hot_sales_repository.dart';
+import 'package:phone_market/repositories/sales_repository.dart';
 import 'package:phone_market/utils.dart';
 
 final getIt = GetIt.instance;
+const double height = 182;
+const double width = 378;
 
 class HotSales extends StatefulWidget {
   const HotSales({Key? key}) : super(key: key);
@@ -16,19 +20,8 @@ class HotSales extends StatefulWidget {
 
 class _HotSalesState extends State<HotSales> {
   final Future<List<HotSaleModel>> hotSaleModels =
-      getIt<HotSalesRepository>().getAll();
-  // int currentPage = 0;
-  // final PageController controller = PageController(
-  //   initialPage: 0,
-  //   keepPage: false,
-  //   viewportFraction: 0.5,
-  // );
-  //
-  // @override
-  // dispose() {
-  //   controller.dispose();
-  //   super.dispose();
-  // }
+      getIt<SalesRepository>().getAllHotSales();
+  late final PageController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -39,29 +32,43 @@ class _HotSalesState extends State<HotSales> {
           subtitle: 'see more',
           onTap: () {},
         ),
-        Container(
-          height: 182,
-          width: 378,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: const Color(0xFF101010),
-          ),
-          child: FutureBuilder<List<HotSaleModel>>(
-              future: hotSaleModels,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState != ConnectionState.done) {
-                  return const CircularProgressIndicator();
-                }
-                if (snapshot.hasError) {
-                  throw snapshot.stackTrace!;
-                }
-                if (!snapshot.hasData) return const Text('Нет данных');
-                return Product(
-                  hotSaleModel: snapshot.requireData[0],
-                );
-              }),
-        ),
+        FutureBuilder<List<HotSaleModel>>(
+            future: hotSaleModels,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const _Container(child: null);
+              }
+              return CarouselSlider(
+                  items: snapshot.requireData.map((e) => Product(e)).toList(),
+                  options: CarouselOptions(
+                    height: height,
+                    viewportFraction: 1,
+                    aspectRatio: 0,
+                    enlargeCenterPage: true,
+                  ));
+            })
       ],
+    );
+  }
+}
+
+class _Container extends StatelessWidget {
+  final Widget? child;
+
+  const _Container({
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: const Color(0xFF101010),
+      ),
+      child: child,
     );
   }
 }
@@ -69,38 +76,46 @@ class _HotSalesState extends State<HotSales> {
 class Product extends StatelessWidget {
   final HotSaleModel hotSaleModel;
 
-  const Product({Key? key, required this.hotSaleModel}) : super(key: key);
+  const Product(this.hotSaleModel, {Key? key}) : super(key: key);
+
+  // Pictures are extremely different and that's why need aligns for every pic
+  static const Map<int, dynamic> _aligns = {
+    // id : widthFactor, heightFactor, imageWidth
+    1: [0.3, 0.7, 230.0],
+    2: [1.0, 1.0, 325.0],
+    3: [0.0, 0.55, 350.0],
+  };
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
-      child: Container(
-        height: 182,
-        width: 378,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: const Color(0xFF101010),
-        ),
+      child: _Container(
         child: Stack(
           children: [
             Positioned(
               bottom: 0,
               right: 0,
               child: Align(
-                  widthFactor: 0.3,
-                  heightFactor: 0.7,
+                  widthFactor: _aligns[hotSaleModel.id][0],
+                  heightFactor: _aligns[hotSaleModel.id][1],
                   alignment: Alignment.topCenter,
-                  child: Image.network(
-                    hotSaleModel.picture,
-                    width: 600,
-                  )),
+                  child: Image(
+                    image: CachedNetworkImageProvider(
+                      hotSaleModel.picture,
+                    ),
+                    height: _aligns[hotSaleModel.id][2],
+                  ),
+              ),
             ),
             Container(
               padding: const EdgeInsets.fromLTRB(25, 15, 0, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const Spacer(
+                    flex: 2,
+                  ),
                   CircleAvatar(
                     radius: 13,
                     backgroundColor: hotSaleModel.isNew
@@ -117,27 +132,35 @@ class Product extends StatelessWidget {
                               : Colors.transparent),
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.only(bottom: 12)),
+                  const Spacer(
+                    flex: 5,
+                  ),
                   Text(
                     hotSaleModel.title,
                     style: const TextStyle(
+                      shadows: [Shadow(color: MyColors.dark, blurRadius: 8.0)],
                       color: Colors.white,
                       fontFamily: 'SFPro',
                       fontSize: 24,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.only(bottom: 5)),
+                  const Spacer(
+                    flex: 1,
+                  ),
                   Text(
                     hotSaleModel.subtitle,
                     style: const TextStyle(
+                      shadows: [Shadow(color: MyColors.dark, blurRadius: 8.0)],
                       color: Colors.white,
                       fontFamily: 'SFPro',
                       fontSize: 11,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.only(bottom: 12)),
+                  const Spacer(
+                    flex: 5,
+                  ),
                   MaterialButton(
                     height: 25,
                     minWidth: 98,
@@ -157,7 +180,10 @@ class Product extends StatelessWidget {
                         color: MyColors.dark,
                       ),
                     ),
-                  )
+                  ),
+                  const Spacer(
+                    flex: 4,
+                  ),
                 ],
               ),
             ),

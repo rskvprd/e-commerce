@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:phone_market/pages/main_screen/widgets/title_widget.dart';
 import 'package:phone_market/utils.dart';
 
-class CategoriesWidget extends StatefulWidget {
-  const CategoriesWidget({Key? key}) : super(key: key);
+class SelectCategoryWidget extends StatefulWidget {
+  const SelectCategoryWidget({Key? key}) : super(key: key);
   static const List<Map<String, ImageProvider>> _categories = [
     {'Phones': AssetImage('assets/icons/phone.png')},
     {'Computers': AssetImage('assets/icons/pc.png')},
@@ -13,10 +13,10 @@ class CategoriesWidget extends StatefulWidget {
   ];
 
   @override
-  State<CategoriesWidget> createState() => _CategoriesWidgetState();
+  State<SelectCategoryWidget> createState() => _SelectCategoryWidgetState();
 }
 
-class _CategoriesWidgetState extends State<CategoriesWidget> {
+class _SelectCategoryWidgetState extends State<SelectCategoryWidget> {
   int selectedIndex = 0;
 
   @override
@@ -33,10 +33,10 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
           height: 100,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: CategoriesWidget._categories.length,
+            itemCount: SelectCategoryWidget._categories.length,
             itemBuilder: (context, index) {
               final Map<String, ImageProvider> category =
-                  CategoriesWidget._categories[index];
+                  SelectCategoryWidget._categories[index];
               return GestureDetector(
                 onTap: () {
                   setState(() {
@@ -80,13 +80,18 @@ class _Category extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircleAvatar(
-          radius: 71 / 2,
-          backgroundColor: isSelected ? MyColors.light : Colors.white,
-          child: ImageIcon(
-            icon,
-            size: 30,
-            color: isSelected ? Colors.white : MyColors.grey,
+        Material(
+          color: Colors.transparent,
+          shadowColor: Colors.black12,
+          elevation: 10,
+          child: CircleAvatar(
+            radius: 71 / 2,
+            backgroundColor: isSelected ? MyColors.light : Colors.white,
+            child: ImageIcon(
+              icon,
+              size: 30,
+              color: isSelected ? Colors.white : MyColors.grey,
+            ),
           ),
         ),
         const Padding(padding: EdgeInsets.only(bottom: 7)),
