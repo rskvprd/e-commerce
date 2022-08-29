@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:phone_market/models/best_seller_model.dart';
@@ -24,7 +23,9 @@ class _BestSellersWidgetState extends State<BestSellersWidget> {
   void setupBestSellers() async {
     bestSellers = await bestSellersFuture
         .onError((error, stackTrace) => throw stackTrace);
-    setState(() {});
+    if(mounted) {
+      setState(() {});
+    }
   }
 
   @override

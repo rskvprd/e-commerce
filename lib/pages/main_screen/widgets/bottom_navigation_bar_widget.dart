@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:phone_market/utils.dart';
 
-class MyBottomNavigationBar extends StatefulWidget {
-  const MyBottomNavigationBar({Key? key}) : super(key: key);
+class BottomNavigationBarWidget extends StatefulWidget {
+  const BottomNavigationBarWidget({Key? key}) : super(key: key);
 
   @override
-  State<MyBottomNavigationBar> createState() => _MyBottomNavigationBarState();
+  State<BottomNavigationBarWidget> createState() =>
+      _BottomNavigationBarWidgetState();
 }
 
-class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
+class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   static const double _iconSize = 18;
   int currentIndex = 0;
 

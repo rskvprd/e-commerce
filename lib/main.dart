@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         overlays: [SystemUiOverlay.top]);
     return const MaterialApp(
       title: 'ECommerce',
-      home: Main(),
+      home: MainScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

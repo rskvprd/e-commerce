@@ -3,7 +3,8 @@ import 'package:phone_market/utils.dart';
 
 class SearchEngineWidget extends StatelessWidget {
   const SearchEngineWidget({Key? key}) : super(key: key);
-  static const searchEngineTextStyle = TextStyle(fontFamily: 'MarkPro', fontSize: 15);
+  static const searchEngineTextStyle =
+      TextStyle(fontFamily: 'MarkPro', fontSize: 15);
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +32,8 @@ class SearchEngineWidget extends StatelessWidget {
               filled: true,
               fillColor: Colors.white,
               prefixIcon: const Icon(
-                Icons.search_outlined,
-                size: 20,
+                Icons.search,
+                size: 25,
                 color: MyColors.light,
               ),
             ),

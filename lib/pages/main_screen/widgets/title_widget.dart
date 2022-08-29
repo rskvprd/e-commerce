@@ -23,7 +23,7 @@ class TitleWidget extends StatelessWidget {
           child: Text(
             subtitle,
             style: const TextStyle(
-                color: MyColors.light, fontFamily: 'MarkPro', fontSize: 15, fontWeight: FontWeight.w500),
+                color: MyColors.light, fontFamily: 'MarkPro', fontSize: 15, fontWeight: FontWeight.w400),
           ))
     ]);
   }
